@@ -1,0 +1,94 @@
+%%
+%% file: slgloss.sty
+%% authors: Itamar Kastner (NYU) and Jonathan Keane (UChicago), January 2013
+%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{slgloss}
+\RequirePackage{substr}
+%
+
+%% \fs{} takes a word and outputs it as a fingerspelled word
+%
+\DeclareRobustCommand*\fs[2][]{%
+  \let\@tempa\relax%
+  \def\@tempb{-}%
+  \@tfor\@tempc:=#2\do{%
+\textsc{\@tempa \@tempc}\let\@tempa\@tempb%
+}%
+}
+
+%% \slg[nmm]{text} typesets input in small caps, with the optional nonmanual
+%% marker denoted above the text. Scope is marked by an overline
+\makeatletter%
+\DeclareRobustCommand*\slg[2][\null]{
+  \ifx#1\null%
+    \textsc{\lowercase{#2}}%
+  \else
+    $\stackrel{\hfill #1}{\overline{\textsc{\lowercase{#2}}}}$%
+  \fi
+}
+\makeatother
+
+%
+%% \fslist{} takes a string of letters and outputs each as a fingerspelled
+%% individual letter, if that string contains commas the output is separated at the commas, allowing for arbitrary length units.
+%
+\newcounter{@tempe}
+\makeatletter%
+\DeclareRobustCommand*\fslist[2][and]{%
+\let\last@item\relax%
+\let\last@sep\relax%
+\def\@nlast{, }%
+\setcounter{@tempe}{0}%
+\IfSubStringInString{,}{#2}{
+%%% if there are commas in the string, separate by commas
+\@for\@ii:=#2\do{%
+\ifx\last@item\relax\else%
+   \ifx\last@sep\relax%
+   \else\@nlast\fi%
+   \ifnum\value{@tempe}>0\relax%
+      \def\last@sep{, #1 }%
+    \else%
+      \def\last@sep{ #1 }%
+   \fi%
+\textsc{\mbox{{-\last@item-}}}%
+\addtocounter{@tempe}{1}%
+\fi
+\let\last@item\@ii
+}%
+\ifx\last@item\relax\else
+\last@sep \textsc{\mbox{{-\last@item-}}}%
+\fi
+}{%%%% if there are no commas, separate by character.
+\@tfor\@ii:=#2\do{%
+\ifx\last@item\relax\else%
+   \ifx\last@sep\relax%
+   \else\@nlast\fi%
+   \ifnum\value{@tempe}>0\relax%
+      \def\last@sep{, #1 }%
+    \else%
+      \def\last@sep{ #1 }%
+   \fi%
+\textsc{\mbox{{-\last@item-}}}%
+\addtocounter{@tempe}{1}%
+\fi
+\let\last@item\@ii
+}%
+\ifx\last@item\relax\else
+\last@sep \textsc{\mbox{{-\last@item-}}}%
+\fi
+}%%%
+}
+\makeatother%
+
+% Code to allow _ to be used without explicitly entering math mode
+%% from gb4e.sty, due to Hans-Peter Kolb and Craig Thiersch and John Frampton:
+\catcode`_=\active%
+\def_#1{\ifmmode\mathit{\sb{#1}}\else${}\sb{#1}$\fi}%
+\catcode`^=\active%
+\def^#1{\ifmmode\mathit{\sp{#1}}\else${}\sp{#1}$\fi}%
+
+\endinput
+
+%%
+%% End of slgloss.sty
