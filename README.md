@@ -1,4 +1,4 @@
-stokoe
+slgloss
 ======
 
 A package for glossing sign language examples, including fingerspelling and nonmanuals, in LaTeX.
@@ -7,9 +7,9 @@ Sign language signs are conventionally glossed in smallcaps, with the scope of n
 
 There are numerous ways of glossing ASL lexical items. In an effort to keep these glosses integrated in running text we have adopted the clear and elegant typographic conventions of Cormier et al. (2008). Not only is this consistent with separating ASL forms from the text as well as reliably marking the difference between ASL native signs (smallcaps) and fingerspelled forms (smallcaps, with hyphens) but it also is easier to read than many other systems. Following from this, single finger spelled letters can be flanked by hyphens on either side.
 
-_stokoe_ (named after William Stokoe) provides an easy way of typesetting these glosses for sign language linguists.
+_slgloss_ provides an easy way of typesetting these glosses for sign language linguists.
 
-stokoe.sty provides three commands: **\slg{}**, **\fs{}** and **\fslist{}**. In addition, it allows use of subscript indices without explicitly entering math mode: **IX_a**.
+slgloss.sty provides three commands: **\slg{}**, **\fs{}** and **\fslist{}**. In addition, it allows use of subscript indices without explicitly entering math mode: **IX_a**.
 
 \slg{}
 ------
@@ -31,5 +31,12 @@ As a shorthand, use **\fslist{bar}** to typset the letters _b_, _a_, and _r_ as 
 
 There is an optional argument that changes the conjunction used; the default is _and_: **\fslist[or]{b,ac,r}**, **\fslist[or]{bar}**.
 
-Terms of Use
+License
 ---
+Copyright (c) 2013 Itamar Kastner, Jonathan Keane
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
