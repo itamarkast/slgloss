@@ -5,7 +5,7 @@ A package for glossing sign language examples, including fingerspelling and nonm
 
 Sign language signs are conventionally glossed in smallcaps, with the scope of nanmanual markers denoted by a solid line running above the gloss. The type of nonmanual is denoted at the right edge of this line. Loci in space are denoted by subscript indices. This is the notational convention favored by most sign linguists, e.g. Sandler and Lillo-Martin (2006).
 
-There are numerous ways of glossing ASL lexical items. In an effort to keep these glosses integrated in running text we have adopted the clear and elegant typographic conventions of Cormier et al. (2008). Not only is this consistent with separating ASL forms from the text as well as reliably marking the difference between ASL native signs (smallcaps) and fingerspelled forms (smallcaps, with hyphens) but it also is easier to read than many other systems. Following from this, single finger spelled letters can be flanked by hyphens on either side.
+In an effort to keep these glosses integrated in running text we have adopted the typographic conventions of Brentari and Padden (2001) and Cormier et al. (2008) where fingerspelled forms are set in small-caps, separated by hyphens. Following from this, single finger spelled letters can be flanked by hyphens on either side.
 
 _slgloss_ provides an easy way of typesetting these glosses for sign language linguists.
 
