@@ -40,7 +40,7 @@
     \scantokens{##1}%
   \endgroup
 }
-  \ifx#1\null%
+  \if\relax\noexpand#1\relax%
     \subsup{\textsc{\lowercase{#2}}}%
   \else
     $\stackrel{\hfill \subsup{{\textrm{#1}}}}{\overline{\subsup{\textsc{\lowercase{#2}}}}}$%
