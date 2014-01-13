@@ -28,25 +28,25 @@
 \endgroup
 
 \makeatletter%
-\DeclareRobustCommand*\slg[2][\null]{
+\DeclareRobustCommand*\slg[2][\null]{%
 % these two functions are necessary to parse a string in text mode and use the new definitions of _ and ^ the ensures math mode, and sets as sub or super script.
 \def\subsup{%
-  \begingroup
-    \catcode`_=\active
-    \catcode`^=\active
-    \Xsubsup
-}
+  \begingroup%
+    \catcode`_=\active%
+    \catcode`^=\active%
+    \Xsubsup%
+}%
 \def\Xsubsup##1{%
     \scantokens{##1}%
-  \endgroup
-}
-  \ifx#1\null%
-    \subsup{\textsc{\lowercase{#2}}}%
-  \else
-    $\stackrel{\hfill \subsup{{\textrm{#1}}}}{\overline{\subsup{\textsc{\lowercase{#2}}}}}$%
-  \fi
-}
-\makeatother
+  \endgroup%
+}%
+\ifx#1\null%
+\subsup{\textsc{\lowercase{#2}}}%
+\else%
+$\stackrel{\hfill \subsup{{\textrm{#1}}}}{\overline{\subsup{\textsc{\lowercase{#2}}}}}$%
+\fi%
+}%
+\makeatother%
 
 %
 %% \fslist{} takes a string of letters and outputs each as a fingerspelled
