@@ -11,6 +11,8 @@ _slgloss_ provides an easy way of typesetting these glosses for sign language li
 
 slgloss.sty provides three commands: **\slg{}**, **\fs{}** and **\fslist{}**. In addition, it allows use of subscript indices without explicitly entering math mode: **IX_a**.
 
+By default, any text in slg will be transformed to lowercase, and then made into smallcaps. There is an option **nolowercase** that can be called when the package is loaded (eg **\usepackage[nolowercase]{slgloss}**) for scripts where lowercase transformations cause compilation errors.
+
 \slg{}
 ------
 **\slg{text}** typesets the input _<text>_ in small caps. Input may be lowercase or uppercase.
