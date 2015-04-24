@@ -5,6 +5,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{slgloss}
 \RequirePackage{substr}
+%% no lowercase option for scripts if they fail with lowercase
+\newcommand{\lwr}[1]{\lowercase{#1}}
+\DeclareOption{nolowercase}{
+  \renewcommand{\lwr}[1]{#1}
+}
+\ExecuteOptions{}
+\ProcessOptions\relax
 %
 
 %% \fs{} takes a word and outputs it as a fingerspelled word
@@ -41,9 +48,9 @@
   \endgroup%
 }%
 \ifx#1\null%
-\subsup{\textsc{\lowercase{#2}}}%
+\subsup{\textsc{\lwr{#2}}}%
 \else%
-$\stackrel{\hfill \subsup{{\textrm{#1}}}}{\overline{\subsup{\textsc{\lowercase{#2}}}}}$%
+$\stackrel{\hfill \subsup{{\textrm{#1}}}}{\overline{\subsup{\textsc{\lwr{#2}}}}}$%
 \fi%
 }%
 \makeatother%
