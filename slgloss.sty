@@ -1,6 +1,7 @@
 %%
 %% file: slgloss.sty
 %% authors: Itamar Kastner (NYU) and Jonathan Keane (UChicago), January 2013
+%% update (October 2019): Fabian Bross (Uni Stuttgart) and Itamar Kastner (HU Berlin)
 %%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{slgloss}
@@ -14,6 +15,45 @@
 \ProcessOptions\relax
 %
 
+%% Helper methods for \slgdash
+\newcommand{\dashover}[2][\mathop]{#1{\mathpalette\df@over{{\dashfill}{#2}}}}
+%\newcommand{\fillover}[2][\mathop]{#1{\mathpalette\df@over{{\solidfill}{#2}}}}
+\newcommand{\df@over}[2]{\df@@over#1#2}
+\newcommand\df@@over[3]{%
+  \vbox{
+    \offinterlineskip
+    \ialign{##\cr
+      #2{#1}\cr
+      \noalign{\kern1.2pt}
+      $\m@th#1#3$\cr
+    }
+  }%
+}
+\newcommand{\dashfill}[1]{%
+  \kern-.5pt
+  \xleaders\hbox{\kern.5pt\vrule height.4pt width \dash@width{#1}\kern.5pt}\hfill
+  \kern-.5pt
+}
+\newcommand{\dash@width}[1]{%
+  \ifx#1\displaystyle
+    2pt
+  \else
+    \ifx#1\textstyle
+      1.5pt
+    \else
+      \ifx#1\scriptstyle
+        1.25pt
+      \else
+        \ifx#1\scriptscriptstyle
+          1pt
+        \fi
+      \fi
+    \fi
+  \fi
+}
+\newcommand{\solidfill}[1]{\leaders\hrule\hfill}
+
+
 %% \fs{} takes a word and outputs it as a fingerspelled word
 %
 \DeclareRobustCommand*\fs[2][]{%
@@ -25,7 +65,11 @@
 }
 
 %% \slg[nmm]{text} typesets input in small caps, with the optional nonmanual
-%% marker denoted above the text. Scope is marked by an overline
+%% marker denoted above the text. Scope is marked by an overline.
+%% \slgl[nmm]{text} typesets input in small caps, with the optional nonmanual
+%% marker denoted above the text, but left-aligned. Scope is marked by an overline
+%% \slgdash[nmm]{text} typesets input in small caps, with the optional nonmanual
+%% marker denoted above the text. Scope is marked by a dashed overline.
 % setup a group where _ and ^ are activated, and then defined as ensuring mathmode, and then sub or super scripting
 \begingroup
 \catcode`_=\active%
@@ -51,6 +95,67 @@
 \subsup{\textsc{\lwr{#2}}}%
 \else%
 $\stackrel{\hfill \subsup{{\textrm{#1}}}}{\overline{\subsup{\textsc{\lwr{#2}}}}}$%
+\fi%
+}%
+
+
+\DeclareRobustCommand*\slgbig[3][\null]{%
+% these two functions are necessary to parse a string in text mode and use the new definitions of _ and ^ the ensures math mode, and sets as sub or super script.
+\def\subsup{%
+  \begingroup%
+    \catcode`_=\active%
+    \catcode`^=\active%
+    \Xsubsup%
+}%
+\def\Xsubsup##1{%
+    \scantokens{##1}%
+  \endgroup%
+}%
+\ifx#1\null%
+\subsup{\textsc{\lwr{#2}}}%
+\else%
+$\stackrel{\stackrel{\subsup{\textrm{#1}}}{\subsup{\textrm{#2}}}}
+{\overline{\subsup{\textsc{\lwr{#3}}}}}$%
+\fi%
+}%
+
+
+\DeclareRobustCommand*\slgl[2][\null]{%
+% these two functions are necessary to parse a string in text mode and use the new definitions of _ and ^ the ensures math mode, and sets as sub or super script.
+\def\subsup{%
+  \begingroup%
+    \catcode`_=\active%
+    \catcode`^=\active%
+    \Xsubsup%
+}%
+\def\Xsubsup##1{%
+    \scantokens{##1}%
+  \endgroup%
+}%
+\ifx#1\null%
+\subsup{\textsc{\lwr{#2}}}%
+\else%
+$\stackrel{\subsup{{\textrm{#1}}}\hfill}{\overline{\subsup{\textsc{\lwr{#2}}}}}$%
+\fi%
+}%
+
+
+\DeclareRobustCommand*\slgdash[2][\null]{%
+% these two functions are necessary to parse a string in text mode and use the new definitions of _ and ^ the ensures math mode, and sets as sub or super script.
+\def\subsup{%
+  \begingroup%
+    \catcode`_=\active%
+    \catcode`^=\active%
+    \Xsubsup%
+}%
+\def\Xsubsup##1{%
+    \scantokens{##1}%
+  \endgroup%
+}%
+\ifx#1\null%
+\subsup{\textsc{\lwr{#2}}}%
+\else%
+$\stackrel{\hfill \subsup{\raisebox{0.03em}{\textrm{#1}}}}{\dashover{\subsup{\textsc{\lwr{#2}}}}}$%
 \fi%
 }%
 \makeatother%

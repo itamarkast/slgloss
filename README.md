@@ -21,6 +21,10 @@ By default, any text in slg will be transformed to lowercase, and then made into
 
 Example: **\slg{POSS_a NAME} \slg[wh]{WHAT?}**
 
+Use **\slgl[nmm]{text}** for the nonmanual _<nmm>_ to be left-aligned.
+
+Use **\slgdash[nmm]{text}** to indicate optionality by using a dashed line above the gloss (rather than a solid one).
+
 \fs{}
 -----
 Use **\fs{foo}** to typset the word foo in small caps with dashes between each letter: _F-O-O_.
