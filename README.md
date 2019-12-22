@@ -13,6 +13,8 @@ slgloss.sty provides three commands: **\slg{}**, **\fs{}** and **\fslist{}**. In
 
 By default, any text in slg will be transformed to lowercase, and then made into smallcaps. There is an option **nolowercase** that can be called when the package is loaded (eg **\usepackage[nolowercase]{slgloss}**) for scripts where lowercase transformations cause compilation errors.
 
+For additional documentation see the following short guide by Fabian Bross: <http://fabianbross.de/sign_language_glossing.pdf>
+
 \slg{}
 ------
 **\slg{text}** typesets the input _<text>_ in small caps. Input may be lowercase or uppercase.
