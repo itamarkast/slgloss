@@ -2,6 +2,7 @@
 %% file: slgloss.sty
 %% authors: Itamar Kastner (NYU) and Jonathan Keane (UChicago), January 2013
 %% update (October 2019): Fabian Bross (Uni Stuttgart) and Itamar Kastner (HU Berlin)
+%% update (June 2020): Itamar Kastner (U Edinburgh), based on a suggestion by Kate Davidson (Harvard)
 %%
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{slgloss}
@@ -88,7 +89,7 @@
     \Xsubsup%
 }%
 \def\Xsubsup##1{%
-    \scantokens{##1}%
+    \scantokens{##1\noexpand}%
   \endgroup%
 }%
 \ifx#1\null%
@@ -108,7 +109,7 @@ $\stackrel{\hfill \subsup{{\textrm{#1}}}}{\overline{\subsup{\textsc{\lwr{#2}}}}}
     \Xsubsup%
 }%
 \def\Xsubsup##1{%
-    \scantokens{##1}%
+    \scantokens{##1\noexpand}%
   \endgroup%
 }%
 \ifx#1\null%
@@ -129,7 +130,7 @@ $\stackrel{\stackrel{\subsup{\textrm{#1}}}{\subsup{\textrm{#2}}}}
     \Xsubsup%
 }%
 \def\Xsubsup##1{%
-    \scantokens{##1}%
+    \scantokens{##1\noexpand}%
   \endgroup%
 }%
 \ifx#1\null%
@@ -149,7 +150,7 @@ $\stackrel{\subsup{{\textrm{#1}}}\hfill}{\overline{\subsup{\textsc{\lwr{#2}}}}}$
     \Xsubsup%
 }%
 \def\Xsubsup##1{%
-    \scantokens{##1}%
+    \scantokens{##1\noexpand}%
   \endgroup%
 }%
 \ifx#1\null%
